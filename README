@@ -1,0 +1,104 @@
+****************
+* HashTable
+* CS 321
+* 08/01/2019
+* Brig Lowell
+****************
+
+OVERVIEW:
+
+ HashTable is an Abstract Data Type (ADT) array holding generic type T objects in the format of a hash
+ table. It uses HashObject units inserted into an array. Each HashObject contains the type T object and.
+ a hashcode key. HashTest tests to confirms functionality of HashTable.
+
+
+INCLUDED FILES:
+
+ HashTable.java - source file
+ HashTest.java - source file/driver class
+ HashObject.java - source file
+ word-list - word list file to read from
+ README - this file
+
+
+BUILDING AND RUNNING:
+
+ From the directory containing all source files, compile the test
+ class (and all dependent classes) with the command:
+ $ javac HashTest.java
+
+ Run the compiled ListTester class with the command:
+ $ java HashTest <input type> <load factor> <debug level>
+ 
+  <input type> type 1,2, or 3 for input type of HashObject inserted into HashTable
+   1- random integer
+   2- current time long in millisecond
+   3- words read in from word-list file
+ 
+  <load factor> is the percentage of list filled
+   type a double from 0 to 1
+ 
+  [<debug level>] type 0 or 1
+   0- console output prints a summary of input, duplicates, and average number of probes.
+   1- writes out dump files for both linear hash and double hash HashTables
+      dump file contains object index, object, number of probes and number of duplicates.
+   
+
+
+PROGRAM DESIGN:
+
+ HashTest defines methods for hashing/probing, inserting, deleting, and searching 
+ contents of a list. These methods are used for creating a list of objects
+ and accessing them.
+
+ HashTest uses an array to store HashObjects which are inserted using hash
+ probing to form a list. Each HashObject has 2 links: one to the object's reference and
+ one to an integer hashcode of the object. The HashObjects also have properties
+ of getting the object it is referencing, and getting the hashkey of the object. 
+ Using hash probing, we are able to insert the HashObjects in an array efficiently.
+
+ The HashTable class uses a Prime generator class to generate a set of
+ twin prime numbers within a given range for table size. This is used for efficiency.
+
+ The HashTable adds all the classes and methods mentioned above to create an
+ efficient ADT list. It is able to handle adding and removing efficiently, in addition
+ able to access where or if the list contains an item. The code itself is not as
+ elegant as I would have liked it to be. If I had more time to work on it, I would
+ adjust my methods to clean it up.
+
+ HashTest tests operations of HashTable methods. This includes random ints, current time
+ longs, and reading in lines/words of file.
+
+
+TESTING:
+
+ HashTest was the primary mechanism for testing HashTable.
+ HashTest written while writing HashTable, this allowed printing and testing
+ methods to be performed throughout development.
+
+ Example scenarios for each <input type> and <load factor> were tested for HashTable
+ The results for each of the scenarios are as follows:
+  
+
+
+ All scenarios were tested and compared to a sample_result file given.
+
+ The tests are currently off from what I was expecting the results to be. The linear
+ hash probe average should be greater than double hash probe average; however, my tests are
+ resulting in the opposite. In addition, my probes are including an additional probe for
+ each HashObject. I cannot seem to find the issue after spending a great deal
+ of time debugging. Work is needed to address these issues. 
+
+DISCUSSION:
+
+ This program was used to show me and my class how to build a HashTable
+ with generic data types hashObjects. It took a bit to figure out what
+ the requirements were. But the program started flowing once writing code.
+
+ The biggest problem method I had with the program was my hash() method in HashTable. 
+ For some reason it is giving me off counts of probecount when incrementing. I have tried
+ multiple times to fix the issue, and it logically looks like it is right, but the results 
+ are not showing so. I am not entirely sure why it is giving an off count for probe count for each
+ object inserted. I have tried looking into the insert() method to see if the count went off
+ there, but still not working. It appears to work other than this small issue, but 
+ I will continue searching for ways to fix the issue and get the correct output.
